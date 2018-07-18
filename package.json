@@ -1,0 +1,26 @@
+{
+  "name": "etherscan",
+  "version": "0.0.0",
+  "description": "Web client for viewing data from the Etherscan API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petermikitsh/etherscan.git"
+  },
+  "keywords": [
+    "etherscan",
+    "cryptocurrency",
+    "crypto",
+    "node",
+    "react"
+  ],
+  "author": "Peter Mikitsh <peter.mikitsh@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/petermikitsh/etherscan/issues"
+  },
+  "homepage": "https://github.com/petermikitsh/etherscan#readme"
+}
