@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "Web client for viewing data from the Etherscan API",
   "main": "index.js",
+  "engines": {
+    "node" : "^10.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
