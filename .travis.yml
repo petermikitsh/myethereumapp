@@ -8,5 +8,4 @@ before_script:
   - npm test
 script:
   - npm run build
-deploy:
   - npm run deploy
