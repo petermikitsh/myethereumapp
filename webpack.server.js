@@ -1,10 +1,15 @@
+const fs = require('fs');
 const proc = require('child_process');
 const nodeExternals = require('webpack-node-externals');
-const path = require('path');
 const StartServerPlugin = require('start-server-webpack-plugin');
 const webpack = require('webpack');
+const path = require('path');
 
-const fingerprint = proc.execSync('git rev-parse --short HEAD').toString().trim();
+const __GIT_SHA__ = proc.execSync('git rev-parse --short HEAD').toString().trim();
+
+function readFileSync(file) {
+  return fs.readFileSync(file).toString();
+}
 
 function isDevMode(env) {
   return Boolean(env && env.dev);
@@ -27,16 +32,31 @@ function getEntry(env) {
 }
 
 function getPlugins(env) {
+  const constants = {
+    __CLIENT_CSS__: JSON.stringify('client.css'),
+    __CLIENT_JS__: JSON.stringify('client.js'),
+    __GIT_SHA__: JSON.stringify(__GIT_SHA__),
+    'process.env.NODE_ENV': JSON.stringify(
+      isDevMode(env) ? 'development' : 'production',
+    ),
+  };
   const plugins = [];
+
   if (isDevMode(env)) {
     plugins.push(
       new StartServerPlugin('server.js'),
       new webpack.HotModuleReplacementPlugin(),
     );
+  } else {
+    constants.__CLIENT_CSS__ = JSON.stringify(readFileSync(path.join('dist', 'client.css')));
+    constants.__CLIENT_JS__ = JSON.stringify(readFileSync(path.join('dist', 'client.js')));
   }
+
   plugins.push(
-    new webpack.BannerPlugin(`Version: ${fingerprint}`),
+    new webpack.BannerPlugin(`Version: ${__GIT_SHA__}`),
+    new webpack.DefinePlugin(constants),
   );
+
   return plugins;
 }
 
@@ -51,7 +71,7 @@ module.exports = function config(env) {
         ],
       }),
     ],
-    mode: isDevMode(env) ? 'development' : 'production',
+    mode: isDevMode(env) ? 'development' : 'none',
     module: {
       rules: [
         {
@@ -65,7 +85,6 @@ module.exports = function config(env) {
       ],
     },
     output: {
-      path: path.join(__dirname, '.tmp'),
       filename: 'server.js',
     },
     plugins: getPlugins(env),

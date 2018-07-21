@@ -1,0 +1,24 @@
+{
+  "alias": "myethereum.app",
+  "env": {
+    "DB_CLIENT_CERT": "@db-client-cert",
+    "DB_CLIENT_KEY": "@db-client-key",
+    "DB_SERVER_CA": "@db-server-ca",
+    "ETHERSCAN_API_KEY": "@eth-api-key",
+    "ETHERSCAN_DB_URL": "@eth-db-url",
+    "ETHERSCAN_PORT": "3000",
+    "NODE_ENV": "production"
+  },
+  "files": [
+    "dist/server.js",
+    "src/server/migrations",
+    "src/server/constants.js",
+    ".sequelizerc"
+  ],
+  "scale": {
+    "sfo1": {
+      "min": 1,
+      "max": 1
+    }
+  }
+}

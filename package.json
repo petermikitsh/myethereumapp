@@ -1,5 +1,5 @@
 {
-  "name": "etherscan",
+  "name": "myethereumapp",
   "version": "0.0.0",
   "description": "Web client for viewing data from the Etherscan API",
   "main": "src/server/index.js",
@@ -7,8 +7,22 @@
     "node": "^10.0.0"
   },
   "scripts": {
+    "build": "npm-run-all --sequential build:client build:server",
+    "build:client": "webpack --config webpack.client.js -p",
+    "build:server": "webpack --config webpack.server.js",
+    "coverage:open": "open coverage/index.html",
+    "db:migrate": "sequelize db:migrate",
+    "db:migrate:prod": "NODE_ENV=production sequelize db:migrate",
+    "db:migrate:undo": "sequelize db:migrate:undo",
+    "deploy": "now --token $NOW_TOKEN && now alias --token $NOW_TOKEN && now-purge -t $NOW_TOKEN",
+    "deploy:local": "now && now alias && now-purge",
+    "lint": "npm-run-all --sequential lint:*",
+    "lint:css": "stylelint src/client/**/*.css",
     "lint:js": "eslint 'src/**/*.js'",
-    "start": "npm-run-all --parallel start:server",
+    "now-build": "npm run db:migrate:prod",
+    "now-start": "NODE_ENV=production node dist/server.js",
+    "start": "npm-run-all --parallel start:server start:client",
+    "start:client": "webpack-dev-server --config webpack.client.js --env.dev --hot",
     "start:server": "webpack --config webpack.server.js --env.dev",
     "test": "jest"
   },
@@ -30,21 +44,87 @@
   },
   "homepage": "https://github.com/petermikitsh/etherscan#readme",
   "devDependencies": {
+    "autoprefixer": "9.0.0",
     "babel-loader": "7.1.5",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-object-rest-spread": "6.26.0",
+    "babel-plugin-transform-runtime": "6.23.0",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-react": "6.24.1",
+    "case-sensitive-paths-webpack-plugin": "2.1.2",
+    "css-loader": "1.0.0",
     "eslint": "4.19.1",
     "eslint-config-airbnb": "17.0.0",
     "eslint-plugin-import": "2.13.0",
+    "eslint-plugin-jest": "21.18.0",
     "eslint-plugin-jsx-a11y": "6.1.1",
     "eslint-plugin-react": "7.10.0",
+    "identity-obj-proxy": "3.0.0",
     "jest": "23.4.1",
+    "jest-css-modules-transform": "2.0.0",
+    "mini-css-extract-plugin": "0.4.1",
+    "node-fetch": "2.1.2",
+    "now": "11.3.0",
+    "now-purge": "0.0.15",
     "npm-run-all": "4.1.3",
+    "postcss-loader": "2.1.6",
+    "react-test-renderer": "16.4.1",
     "start-server-webpack-plugin": "2.2.5",
+    "style-loader": "0.21.0",
+    "stylelint": "9.3.0",
+    "stylelint-config-standard": "18.2.0",
     "webpack": "4.16.1",
     "webpack-cli": "3.1.0",
+    "webpack-dev-server": "3.1.4",
     "webpack-node-externals": "1.7.2"
   },
   "dependencies": {
     "@feathersjs/express": "1.2.3",
-    "@feathersjs/feathers": "3.1.7"
+    "@feathersjs/feathers": "3.1.7",
+    "@feathersjs/rest-client": "1.4.1",
+    "@feathersjs/socketio": "3.2.2",
+    "@feathersjs/socketio-client": "1.1.0",
+    "body-parser": "1.18.3",
+    "etherscan-api": "8.1.2",
+    "feathers-hooks-common": "4.14.3",
+    "feathers-redux": "2.1.0",
+    "feathers-sequelize": "3.1.2",
+    "material-react-components": "1.2.0",
+    "mysql2": "1.5.3",
+    "react": "16.4.1",
+    "react-dom": "16.4.1",
+    "react-hot-loader": "4.3.3",
+    "react-redux": "5.0.7",
+    "react-router-dom": "4.3.1",
+    "redux": "4.0.0",
+    "sequelize": "4.38.0",
+    "sequelize-cli": "4.0.0",
+    "socket.io-client": "2.1.1",
+    "timm": "1.4.2"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/server/index.js",
+      "!src/server/migrations/**",
+      "!src/**/__tests__/**"
+    ],
+    "coverageReporters": [
+      "text-summary",
+      "html"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less)$": "identity-obj-proxy"
+    },
+    "globals": {
+      "__CLIENT_CSS__": "client.css",
+      "__CLIENT_JS__": "client.js",
+      "__GIT_SHA__": "a1b2c3"
+    },
+    "setupTestFrameworkScriptFile": "./src/server/__tests__/__setup__.js",
+    "testMatch": [
+      "**/__tests__/*.test.js"
+    ]
   }
 }

@@ -60,5 +60,5 @@ typings/
 # next.js build output
 .next
 
-# Build files
-.tmp
+# Webpack files
+dist
