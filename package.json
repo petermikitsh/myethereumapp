@@ -21,6 +21,7 @@
     "lint:js": "eslint 'src/**/*.js'",
     "now-build": "npm run db:migrate:prod",
     "now-start": "NODE_ENV=production node dist/server.js",
+    "report:coverage": "coveralls < coverage/lcov.info",
     "start": "npm-run-all --parallel start:server start:client",
     "start:client": "webpack-dev-server --config webpack.client.js --env.dev --hot",
     "start:server": "webpack --config webpack.server.js --env.dev",
@@ -52,6 +53,7 @@
     "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
     "case-sensitive-paths-webpack-plugin": "2.1.2",
+    "coveralls": "3.0.2",
     "css-loader": "1.0.0",
     "eslint": "4.19.1",
     "eslint-config-airbnb": "17.0.0",
@@ -111,6 +113,7 @@
       "!src/**/__tests__/**"
     ],
     "coverageReporters": [
+      "lcov",
       "text-summary",
       "html"
     ],

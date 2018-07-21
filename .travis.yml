@@ -10,6 +10,7 @@ before_script:
   - mysql -e 'CREATE DATABASE eth_test;'
   - npm run db:migrate
   - npm test
+  - npm run report:coverage
 script:
   - npm run build
   - npm run deploy
