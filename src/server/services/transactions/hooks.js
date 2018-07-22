@@ -1,4 +1,5 @@
-import { BadGateway } from '@feathersjs/errors';
+import { BadGateway, GeneralError } from '@feathersjs/errors';
+import { get } from 'lodash';
 import etherscanClient from '../../common/etherscanClient';
 
 function queryFromEtherscan() {
@@ -8,7 +9,11 @@ function queryFromEtherscan() {
       startblock,
       endblock,
       sort,
-    } = hook.params.query;
+    } = get(hook, 'params.query', {});
+
+    if (!address) {
+      return hook;
+    }
 
     const transactions = await etherscanClient.account.txlist(
       address,
@@ -21,6 +26,18 @@ function queryFromEtherscan() {
 
     // eslint-disable-next-line no-param-reassign
     hook.result = transactions.result;
+
+    await Promise.all(transactions.result.map(async transaction => (
+      hook.app.service('api/transactions').create({
+        id: transaction.hash,
+        ...transaction,
+      }).catch(() => (
+        hook.app.service('api/transactions').update(
+          transaction.hash,
+          transaction,
+        )
+      ))
+    )));
 
     return hook;
   };

@@ -12,6 +12,7 @@
     "build:server": "webpack --config webpack.server.js",
     "coverage:open": "open coverage/index.html",
     "db:migrate": "sequelize db:migrate",
+    "db:migrate:test": "NODE_ENV=test sequelize db:migrate",
     "db:migrate:prod": "NODE_ENV=production sequelize db:migrate",
     "db:migrate:undo": "sequelize db:migrate:undo",
     "deploy": "now --token $NOW_TOKEN && now alias --token $NOW_TOKEN && now-purge -t $NOW_TOKEN",
@@ -22,10 +23,11 @@
     "now-build": "npm run db:migrate:prod",
     "now-start": "NODE_ENV=production node dist/server.js",
     "report:coverage": "coveralls < coverage/lcov.info",
-    "start": "npm-run-all --parallel start:server start:client",
+    "start": "npm-run-all --parallel start:server start:client test:watch",
     "start:client": "webpack-dev-server --config webpack.client.js --env.dev --hot",
     "start:server": "webpack --config webpack.server.js --env.dev",
-    "test": "jest"
+    "test": "npm run db:migrate:test && jest",
+    "test:watch": "npm run test -- --watchAll"
   },
   "repository": {
     "type": "git",
@@ -97,6 +99,7 @@
     "feathers-hooks-common": "4.14.3",
     "feathers-redux": "1.1.0",
     "feathers-sequelize": "3.1.2",
+    "lodash": "4.17.10",
     "material-design-icons": "3.0.1",
     "material-react-components": "1.2.0",
     "mysql2": "1.5.3",

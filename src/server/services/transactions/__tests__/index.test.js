@@ -55,4 +55,9 @@ describe('src/server/services/transactions', async () => {
     expect(result).toHaveLength(2);
     expect(result[0].blockNumber).toBe('47894');
   });
+
+  test('should return all transactions from DB when no query is provided', async () => {
+    const result = await externalApp.service('api/transactions').find();
+    expect(result).toHaveLength(29);
+  });
 });
