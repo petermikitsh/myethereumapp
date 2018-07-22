@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { MemoryRouter } from 'react-router';
 import configureStore from '../store';
 
 class ContextProvider extends React.Component {
   static childContextTypes = {
+    router: PropTypes.object,
     store: PropTypes.object,
   }
 
@@ -13,7 +15,11 @@ class ContextProvider extends React.Component {
 
   render() {
     const { children } = this.props;
-    return children;
+    return (
+      <MemoryRouter>
+        {children}
+      </MemoryRouter>
+    );
   }
 }
 
