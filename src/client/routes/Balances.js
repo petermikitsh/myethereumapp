@@ -12,7 +12,7 @@ const params = {
   },
 };
 
-class Root extends React.Component {
+export class BalancesRoute extends React.Component {
   componentDidMount() {
     const { find } = this.props;
     find(params);
@@ -35,7 +35,7 @@ class Root extends React.Component {
   }
 }
 
-Root.propTypes = {
+BalancesRoute.propTypes = {
   balances: PropTypes.array.isRequired,
   find: PropTypes.func.isRequired,
   get: PropTypes.func.isRequired,
@@ -54,5 +54,4 @@ function mapActionsToProps() {
   };
 }
 
-
-export default connect(mapStateToProps, mapActionsToProps())(Root);
+export default connect(mapStateToProps, mapActionsToProps())(BalancesRoute);
