@@ -76,7 +76,6 @@
     "postcss-loader": "2.1.6",
     "react-svg-loader": "2.1.0",
     "react-test-renderer": "16.4.1",
-    "server-destroy": "1.0.1",
     "start-server-webpack-plugin": "2.2.5",
     "style-loader": "0.21.0",
     "stylelint": "9.3.0",
@@ -113,6 +112,7 @@
     "redux-thunk": "2.3.0",
     "sequelize": "4.38.0",
     "sequelize-cli": "4.0.0",
+    "server-destroy": "1.0.1",
     "socket.io-client": "2.1.1",
     "timm": "1.4.2"
   },
