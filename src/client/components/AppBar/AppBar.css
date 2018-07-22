@@ -1,4 +1,13 @@
+.appBar {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .title {
   color: #21ce99;
   font-weight: 500;
+  display: flex;
+  padding-right: 16px;
 }

@@ -8,7 +8,7 @@ function queryFromEtherscan() {
 
     await app.service('api/balances').get(id).catch(async () => {
       const balance = await etherscanClient.account.balance(id).catch(e => (
-        Promise.reject(new BadGateway(e))
+        Promise.reject(new BadGateway(e, { errors: { id: e } }))
       ));
 
       const record = await app.service('api/balances').create({

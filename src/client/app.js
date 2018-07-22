@@ -5,11 +5,13 @@ import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
 import Root from './routes/Root';
 import AppBar from './components/AppBar';
+import Tabs from './components/Tabs';
 
 const App = ({ store }) => (
   [
     <AppBar key="0" />,
-    <Provider key="1" store={store}>
+    <Tabs key="1" />,
+    <Provider key="2" store={store}>
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Root} />

@@ -1,0 +1,11 @@
+.root {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  height: 12px;
+  width: 12px;
+  padding-right: 6px;
+  fill: rgba(0, 0, 0, 0.54);
+}
