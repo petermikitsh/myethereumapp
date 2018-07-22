@@ -1,4 +1,4 @@
-import { BadGateway, GeneralError } from '@feathersjs/errors';
+import { BadGateway } from '@feathersjs/errors';
 import { get } from 'lodash';
 import etherscanClient from '../../common/etherscanClient';
 
