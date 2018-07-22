@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React from 'react';
 import { distanceInWordsStrict } from 'date-fns';
 import SvgIcon from 'material-react-components/es/SvgIcon';
@@ -30,11 +31,19 @@ class BalanceListItem extends React.Component {
     return (
       <ListItem
         primary={(
-          <div style={{ color: '#30cd9a' }}>
+          <div
+            style={{
+              color: '#30cd9a',
+              textOverflow: 'ellipsis',
+              overflowY: 'hidden',
+            }}
+          >
             {id}
           </div>
         )}
         buttonProps={{
+          component: Link,
+          to: `/transactions/${id}`,
           style: {
             justifyContent: 'flex-start',
           },
