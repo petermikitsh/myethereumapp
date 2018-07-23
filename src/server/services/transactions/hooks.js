@@ -32,7 +32,7 @@ function queryFromEtherscan() {
         id: transaction.hash,
         ...transaction,
       }).catch(() => (
-        hook.app.service('api/transactions').update(
+        hook.app.service('api/transactions').patch(
           transaction.hash,
           transaction,
         )
