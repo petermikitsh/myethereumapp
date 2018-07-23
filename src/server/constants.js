@@ -8,9 +8,11 @@ function getConfig() {
   return {
     DATABASE_URL: (
       base64ToPlaintext(process.env.ETHERSCAN_DB_URL)
-      || env === 'test'
-        ? 'mysql://localhost:3306/etherscan-test'
-        : 'mysql://localhost:3306/etherscan-local'
+      || (
+        env === 'test'
+          ? 'mysql://localhost:3306/etherscan-test'
+          : 'mysql://localhost:3306/etherscan-local'
+      )
     ),
     DB_SERVER_CA: base64ToPlaintext(process.env.DB_SERVER_CA),
     DB_CLIENT_KEY: base64ToPlaintext(process.env.DB_CLIENT_KEY),
