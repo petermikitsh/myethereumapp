@@ -6,19 +6,25 @@ function queryFromEtherscan() {
   return async (hook) => {
     const { app, id } = hook;
 
-    await app.service('api/balances').get(id).catch(async () => {
-      const balance = await etherscanClient.account.balance(id).catch(e => (
-        Promise.reject(new BadGateway(e, { errors: { id: e } }))
-      ));
+    const balance = await etherscanClient.account.balance(id).catch(e => (
+      Promise.reject(new BadGateway(e, { errors: { id: e } }))
+    ));
 
-      const record = await app.service('api/balances').create({
+    const record = await app.service('api/balances').create({
+      id,
+      balance: balance.result,
+    }).catch(async () => (
+      app.service('api/balances').patch(
         id,
-        balance: balance.result,
-      });
+        {
+          balance: balance.result,
+        },
+      )
+    ));
 
-      // eslint-disable-next-line no-param-reassign
-      hook.result = record;
-    });
+    // eslint-disable-next-line no-param-reassign
+    hook.result = record;
+
     return hook;
   };
 }
