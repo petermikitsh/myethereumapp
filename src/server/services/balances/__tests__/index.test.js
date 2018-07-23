@@ -33,4 +33,16 @@ describe('src/server/services/balances', async () => {
     expect(result.balance)
       .toEqual('40807168566070000000000');
   });
+
+  test('balances should update if already existing in db', async () => {
+    const result = await externalApp
+      .service('api/balances')
+      .get('0xddbd2b932c763ba5b1b7ae3b362eac3e8d40121a');
+
+    const secondResult = await externalApp
+      .service('api/balances')
+      .get('0xddbd2b932c763ba5b1b7ae3b362eac3e8d40121a');
+
+    expect(result.updatedAt === secondResult.updatedAt).toBeFalsy();
+  });
 });
