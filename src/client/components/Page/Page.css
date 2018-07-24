@@ -4,4 +4,6 @@
 
 .title {
   color: #fff;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
