@@ -59,6 +59,10 @@ class BalanceListItem extends React.Component {
         action={(
           <SvgIcon
             style={{ fill: '#fff' }}
+            buttonProps={{
+              component: Link,
+              to: `/transactions/${id}`,
+            }}
             component={ArrowForward}
           />
         )}
