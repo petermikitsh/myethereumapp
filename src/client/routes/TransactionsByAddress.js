@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Transactions from '../components/Transactions';
 import { API_CLIENT } from '../constants';
 
-class TransactionsByAddress extends React.Component {
+export class TransactionsByAddressRoute extends React.Component {
   componentDidMount() {
     const { find, match: { params: { id } } } = this.props;
     find({
@@ -37,7 +37,7 @@ class TransactionsByAddress extends React.Component {
   }
 }
 
-TransactionsByAddress.propTypes = {
+TransactionsByAddressRoute.propTypes = {
   transactions: PropTypes.array.isRequired,
   find: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
@@ -55,4 +55,4 @@ function mapActionsToProps() {
   };
 }
 
-export default connect(mapStateToProps, mapActionsToProps())(TransactionsByAddress);
+export default connect(mapStateToProps, mapActionsToProps())(TransactionsByAddressRoute);

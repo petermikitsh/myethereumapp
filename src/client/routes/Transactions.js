@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Transactions from '../components/Transactions';
 import { API_CLIENT } from '../constants';
 
-class TransactionsRoute extends React.Component {
+export class TransactionsRoute extends React.Component {
   componentDidMount() {
     const { find } = this.props;
     find({

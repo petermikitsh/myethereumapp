@@ -25,13 +25,12 @@ export class BalancesRoute extends React.Component {
 
   render() {
     const { balances } = this.props;
-    return [
+    return (
       <Balances
-        key="0"
         balances={balances}
         onSubmit={this.onSubmit}
-      />,
-    ];
+      />
+    );
   }
 }
 
