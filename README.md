@@ -1,4 +1,4 @@
-### ✨[Demo Site](https://collegepulse.github.io/material-react-components/): live component demos, code samples & more. ✨
+### ✨ Demo Site: [https://myethereum.app](https://myethereum.app) ✨
 
 ## myethereumapp
 
