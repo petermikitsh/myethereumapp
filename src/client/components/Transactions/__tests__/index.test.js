@@ -14,6 +14,7 @@ describe('src/client/components/Balances/BalanceListItem', () => {
         to: '0x3b0bf18ac4bfe9d6c81c186bc835757577f4c1aa',
         value: '3800000000000000',
       }],
+      onSubmit: () => {},
     };
     const component = TestRenderer.create(
       <ContextProvider>

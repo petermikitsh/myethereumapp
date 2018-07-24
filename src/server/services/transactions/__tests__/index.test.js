@@ -20,6 +20,7 @@ describe('src/server/services/transactions', async () => {
   test('transactions should throw an error for an invalid address', async () => {
     const query = {
       query: {
+        isForm: true,
         address: 'an_invalid_address',
       },
     };
@@ -33,6 +34,7 @@ describe('src/server/services/transactions', async () => {
   test('transactions should return the list of transactions for the address', async () => {
     const query = {
       query: {
+        isForm: true,
         address: '0xddbd2b932c763ba5b1b7ae3b362eac3e8d40121a',
       },
     };
@@ -45,6 +47,7 @@ describe('src/server/services/transactions', async () => {
   test('transactions should return within specified blocks, sorted descending', async () => {
     const query = {
       query: {
+        isForm: true,
         address: '0xddbd2b932c763ba5b1b7ae3b362eac3e8d40121a',
         startblock: 47884 - 1,
         endblock: 47894 + 1,

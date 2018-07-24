@@ -1,0 +1,22 @@
+.row {
+  display: flex;
+}
+
+.rowField {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.rowField:first-child {
+  margin-left: 0;
+}
+
+.rowField:last-child {
+  margin-right: 0;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}

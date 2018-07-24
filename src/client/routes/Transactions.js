@@ -16,9 +16,19 @@ class TransactionsRoute extends React.Component {
     });
   }
 
+  onSubmit = (query) => {
+    const { find } = this.props;
+    return find({ query });
+  }
+
   render() {
     const { transactions } = this.props;
-    return <Transactions transactions={transactions} />;
+    return (
+      <Transactions
+        onSubmit={this.onSubmit}
+        transactions={transactions}
+      />
+    );
   }
 }
 

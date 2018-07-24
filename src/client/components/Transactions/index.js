@@ -3,8 +3,9 @@ import numeral from 'numeral';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Page from '../Page';
+import Form from './Form';
 
-export default function Transactions({ transactions, address }) {
+export default function Transactions({ onSubmit, transactions, address }) {
   let title = 'Transactions';
 
   if (address) {
@@ -13,16 +14,18 @@ export default function Transactions({ transactions, address }) {
 
   return (
     <Page title={title}>
+      <Form onSubmit={onSubmit} initialValues={{ address, isForm: true }} />
       <List style={{ backgroundColor: 'transparent' }}>
         {transactions.map(({
           id,
+          hash,
           blockNumber,
           from,
           to,
           value,
         }) => (
           <ListItem
-            key={id}
+            key={hash || id}
             primary={(
               <div
                 style={{
@@ -31,7 +34,7 @@ export default function Transactions({ transactions, address }) {
                   overflowY: 'hidden',
                 }}
               >
-                {id}
+                {hash || id}
               </div>
             )}
             secondary={(
@@ -46,7 +49,7 @@ export default function Transactions({ transactions, address }) {
                   {`To: ${to}`}
                 </div>
                 <div>
-                  {`Amount: ${numeral(value).divide(10 ** 18).format('0,0.00000')} ETH}`}
+                  {`Amount: ${numeral(value).divide(10 ** 18).format('0,0.00000')} ETH`}
                 </div>
               </div>
             )}
@@ -63,5 +66,6 @@ Transactions.defaultProps = {
 
 Transactions.propTypes = {
   address: PropTypes.string,
+  onSubmit: PropTypes.func.isRequired,
   transactions: PropTypes.array.isRequired,
 };

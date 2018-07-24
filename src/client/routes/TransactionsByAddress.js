@@ -20,12 +20,18 @@ class TransactionsByAddress extends React.Component {
     });
   }
 
+  onSubmit = (query) => {
+    const { find } = this.props;
+    return find({ query });
+  }
+
   render() {
     const { transactions, match: { params: { id } } } = this.props;
     return (
       <Transactions
         address={id}
         transactions={transactions}
+        onSubmit={this.onSubmit}
       />
     );
   }
