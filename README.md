@@ -6,12 +6,15 @@ Web client for viewing data from the Etherscan API.
 
 ### Getting Started
 
+This application requires a locally-running MySQL instance in development mode. By default, the application will attempt connecting to the following location: `mysql://localhost:3306/etherscan-local`. Once the MySQL server is available, run the following:
+
 ```
 npm install
+npm run db:migrate
 npm start
 ```
 
- Your browser will open when the bundle is ready.
+Your browser will open when the bundle is ready.
 
 ### Architecture, design decisions, etc
 
