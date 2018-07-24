@@ -7,9 +7,9 @@ import makeClass from 'classnames';
 import InputHelper from '../InputHelper';
 import Styles from './Form.css';
 
-const ErrorHelper = (
+const ErrorHelper = ({ error }) => (
   <div style={{ color: '#F00' }}>
-    There was a problem with that address
+    { error }
   </div>
 );
 
@@ -23,7 +23,7 @@ class BalanceForm extends React.Component {
         helperText={(
           <InputHelper
             error={error}
-            message={error ? ErrorHelper : null}
+            message={error ? <ErrorHelper error={error} /> : null}
           />
         )}
         style={{ color: '#fff' }}

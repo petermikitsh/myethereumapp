@@ -1,5 +1,5 @@
 import feathers from '@feathersjs/feathers';
-import { BadGateway } from '@feathersjs/errors';
+import { BadRequest } from '@feathersjs/errors';
 import service from '../index';
 import { external } from '../../../__tests__/helpers';
 
@@ -28,7 +28,7 @@ describe('src/server/services/transactions', async () => {
       .service('api/transactions')
       .find(query))
       .rejects
-      .toThrow(BadGateway);
+      .toThrow(BadRequest);
   });
 
   test('transactions should return the list of transactions for the address', async () => {

@@ -1,5 +1,5 @@
 import feathers from '@feathersjs/feathers';
-import { BadGateway } from '@feathersjs/errors';
+import { BadRequest, BadGateway } from '@feathersjs/errors';
 import service from '../index';
 import { external } from '../../../__tests__/helpers';
 
@@ -22,7 +22,7 @@ describe('src/server/services/balances', async () => {
       .service('api/balances')
       .get('__bad_address__'))
       .rejects
-      .toThrow(BadGateway);
+      .toThrow(BadRequest);
   });
 
   test('balances should get the balance for the address', async () => {

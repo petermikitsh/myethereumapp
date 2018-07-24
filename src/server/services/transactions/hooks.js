@@ -1,6 +1,9 @@
 import { BadGateway, BadRequest } from '@feathersjs/errors';
 import { get, isEmpty } from 'lodash';
+import Web3 from 'web3';
 import etherscanClient from '../../common/etherscanClient';
+
+const web3 = new Web3();
 
 export function getErrors({
   startblock,
@@ -9,8 +12,8 @@ export function getErrors({
 }) {
   const errors = {};
 
-  if (!address) {
-    errors.address = 'Enter an address';
+  if (!web3.utils.isAddress(address)) {
+    errors.address = 'Invalid ethereum address';
   }
 
   if (startblock && Number.isNaN(Number(startblock))) {
@@ -51,7 +54,7 @@ function queryFromEtherscan() {
       endblock,
       sort,
     ).catch(e => (
-      Promise.reject(new BadGateway(e))
+      Promise.reject(new BadGateway({ errors: { id: 'Unable to access Etherscan API' } }))
     ));
 
     // eslint-disable-next-line no-param-reassign

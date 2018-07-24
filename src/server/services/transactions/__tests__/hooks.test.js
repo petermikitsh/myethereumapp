@@ -12,7 +12,7 @@ describe('src/server/services/transactions/hooks', () => {
 
   test('should error if address is empty', () => {
     const result = getErrors({});
-    expect(result).toEqual({ address: 'Enter an address' });
+    expect(result).toEqual({ address: 'Invalid ethereum address' });
   });
 
   test('should error if startblock is not a number', () => {
