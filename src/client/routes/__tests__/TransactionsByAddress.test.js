@@ -20,8 +20,8 @@ describe('src/client/routes/TransactionsByAddress', () => {
       </ContextProvider>,
     );
     expect(component).toBeTruthy();
-    expect(find.mock.calls.length).toBe(1);
+    expect(find.mock.calls).toHaveLength(1);
     component.root.findByType(TransactionsByAddressRoute).instance.onSubmit();
-    expect(find.mock.calls.length).toBe(2);
+    expect(find.mock.calls).toHaveLength(2);
   });
 });

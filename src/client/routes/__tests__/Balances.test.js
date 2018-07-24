@@ -17,8 +17,8 @@ describe('src/client/routes/Balances', () => {
       </ContextProvider>,
     );
     expect(component).toBeTruthy();
-    expect(find.mock.calls.length).toBe(1);
+    expect(find.mock.calls).toHaveLength(1);
     component.root.findByType(BalancesRoute).instance.onSubmit('0x7658ef9aa7817e1ba390c5ba3c526115d25452b3');
-    expect(get.mock.calls.length).toBe(1);
+    expect(get.mock.calls).toHaveLength(1);
   });
 });
