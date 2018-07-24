@@ -94,6 +94,7 @@
     "@feathersjs/socketio": "3.2.2",
     "@feathersjs/socketio-client": "1.1.0",
     "body-parser": "1.18.3",
+    "classnames": "2.2.6",
     "date-fns": "1.29.0",
     "etherscan-api": "8.1.2",
     "feathers-hooks-common": "4.14.3",

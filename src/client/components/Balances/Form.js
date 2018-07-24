@@ -2,13 +2,10 @@ import React from 'react';
 import { Field, reduxForm, SubmissionError } from 'redux-form';
 import PropTypes from 'prop-types';
 import TextField from 'material-react-components/es/TextField';
+import Button from 'material-react-components/es/Button';
+import makeClass from 'classnames';
 import InputHelper from '../InputHelper';
-
-const StandardHelper = (
-  <div style={{ color: '#FFF' }}>
-    Enter an address
-  </div>
-);
+import Styles from './Form.css';
 
 const ErrorHelper = (
   <div style={{ color: '#F00' }}>
@@ -18,20 +15,27 @@ const ErrorHelper = (
 
 class BalanceForm extends React.Component {
   address = ({ input, meta: { error } }) => (
-    <TextField
-      label="Address"
-      primaryColor="#30cd9a"
-      errorColor={error ? '#F00' : 'rgba(255,255,255,0.5)'}
-      helperText={(
-        <InputHelper
-          error={error}
-          message={error ? ErrorHelper : StandardHelper}
-        />
-      )}
-      style={{ color: '#fff' }}
-      value={input.value}
-      onChange={input.onChange}
-    />
+    <div className={Styles.form}>
+      <TextField
+        label="Address"
+        primaryColor="#30cd9a"
+        errorColor={error ? '#F00' : 'rgba(255,255,255,0.5)'}
+        helperText={(
+          <InputHelper
+            error={error}
+            message={error ? ErrorHelper : null}
+          />
+        )}
+        style={{ color: '#fff' }}
+        value={input.value}
+        onChange={input.onChange}
+      />
+      <div className={makeClass(Styles.action, { [Styles.actionErr]: error })}>
+        <Button type="submit" buttonColor="#30cd9a">
+          Search
+        </Button>
+      </div>
+    </div>
   )
 
   submit = (data) => {

@@ -1,0 +1,12 @@
+.form {
+  display: flex;
+}
+
+.action {
+  display: flex;
+  align-items: flex-end;
+}
+
+.actionErr {
+  margin-bottom: 12px;
+}
