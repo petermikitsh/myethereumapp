@@ -39,3 +39,5 @@ Your browser will open when the bundle is ready.
 - Locking down the API. In a true production environment, you'd want to rate limit requests, add pagination, and require authentication to reach the API endpoints.
 
 - Server-side rendering. If you look at the response from the server root (e.g., `GET /`), you'll notice the [body](https://github.com/petermikitsh/myethereumapp/blob/master/src/server/services/render/index.js) is sparse, as the DOM is populated by React on the client. This can be less-than-ideal for SEO.
+
+- Simplified workflows. In this project, you'll see I've pushed commits directly to master. In enterprise environments with multiple collaborators, I usually follow a variation of the [standard branching model](https://nvie.com/posts/a-successful-git-branching-model/?), where features are built on a new branch.
