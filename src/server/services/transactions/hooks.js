@@ -54,7 +54,7 @@ function queryFromEtherscan() {
       endblock,
       sort,
     ).catch(e => (
-      Promise.reject(new BadGateway({ errors: { id: 'Unable to access Etherscan API' } }))
+      Promise.reject(new BadGateway(e, { errors: { id: 'Unable to access Etherscan API' } }))
     ));
 
     // eslint-disable-next-line no-param-reassign

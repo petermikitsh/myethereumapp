@@ -1,5 +1,5 @@
 import feathers from '@feathersjs/feathers';
-import { BadRequest, BadGateway } from '@feathersjs/errors';
+import { BadRequest } from '@feathersjs/errors';
 import service from '../index';
 import { external } from '../../../__tests__/helpers';
 

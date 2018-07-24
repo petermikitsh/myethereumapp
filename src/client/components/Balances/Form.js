@@ -13,6 +13,10 @@ const ErrorHelper = ({ error }) => (
   </div>
 );
 
+ErrorHelper.propTypes = {
+  error: PropTypes.node.isRequired,
+};
+
 class BalanceForm extends React.Component {
   address = ({ input, meta: { error } }) => (
     <div className={Styles.form}>
