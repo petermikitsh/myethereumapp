@@ -105,7 +105,6 @@ class TransactionsForm extends React.Component {
         <div className={Styles.center}>
           <Button
             buttonColor="#30cd9a"
-            textColor="#fff"
             type="submit"
           >
             Search Transactions
